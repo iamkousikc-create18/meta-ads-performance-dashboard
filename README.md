@@ -20,11 +20,12 @@ An interactive **Power BI** dashboard that tracks paid advertising performance a
 3. [Dashboard Overview](#dashboard-overview)
 4. [KPIs and Definitions](#kpis-and-definitions)
 5. [Visuals](#visuals)
-6. [Data Model](#data-model)
-7. [Key Insights](#key-insights)
-8. [Recommendations](#recommendations)
-9. [Repository Contents](#repository-contents)
-10. [How to Use](#how-to-use)
+6. [Dataset](#dataset)
+7. [Data Model](#data-model)
+8. [Key Insights](#key-insights)
+9. [Recommendations](#recommendations)
+10. [Repository Contents](#repository-contents)
+11. [How to Use](#how-to-use)
 
 ---
 
@@ -95,6 +96,17 @@ Every chart responds to the metric selector.
 
 The top of each page also shows 12 KPI cards for the measures above.
 
+## Dataset
+
+The data comes from four CSV source files (in the `Raw Data` folder), loaded into Power BI. Two more tables, `Calendar Table` and `Dynamic Measures`, are created inside Power BI.
+
+| File | Description | Key fields used in the report |
+|---|---|---|
+| `ad_events.csv` | Every ad event (impression, click, share, comment, purchase) | `event_type`, timestamp, `time_of_day` |
+| `ads.csv` | Ad details | `ad_type`, `target_gender`, `target_interests` |
+| `campaigns.csv` | Campaign details | campaign `name`, `total_budget` |
+| `users.csv` | User details | `user_age`, `country` |
+
 ## Data Model
 
 Star-schema model with `ad_events` as the central fact table.
@@ -112,7 +124,7 @@ Chart titles (Gender, Age, Map, Calendar, Weekly, Hourly, Matrix) are DAX measur
 
 ## Key Insights
 
-Figures below are taken from the dashboard snapshot in `Dashboard_Insights.pdf`.
+Figures below are taken from the dashboard snapshot in `Documentation/Dashboard_Insights.pdf`.
 
 **Headline numbers**
 
@@ -153,19 +165,25 @@ Video has the best CTR, conversion and engagement rates. Stories deliver the mos
 ## Repository Contents
 
 ```
+├── Raw Data/
+│   ├── ad_events.csv                   # Ad event log
+│   ├── ads.csv                         # Ad details
+│   ├── campaigns.csv                   # Campaign details
+│   └── users.csv                       # User details
+├── Documentation/
+│   ├── Business_Requirements_Document.pdf  # Objectives, scope, KPI definitions, chart specs
+│   └── Dashboard_Insights.pdf              # Findings and recommendations
 ├── images/
 │   ├── facebook-dashboard.png          # Facebook page screenshot
 │   └── instagram-dashboard.png         # Instagram page screenshot
-├── Meta_Ad_Analysis.pbix               # Power BI report (model, measures, visuals)
-├── Business_Requirements_Document.pdf  # Objectives, scope, KPI definitions, chart specs
-├── Dashboard_Insights.pdf              # Findings and recommendations
+├── Meta Ad Analysis.pbix               # Power BI report (model, measures, visuals)
 └── README.md
 ```
 
 ## How to Use
 
 1. Install [Power BI Desktop](https://powerbi.microsoft.com/desktop/) (the file was created with the November 2025 release).
-2. Open `Meta_Ad_Analysis.pbix`.
+2. Open `Meta Ad Analysis.pbix`.
 3. Use the **Facebook** and **Instagram** navigator buttons to switch platform.
 4. Pick a metric in the metric selector. All charts update together.
 5. Narrow the view with the Campaign, Target Interests and Month slicers.
